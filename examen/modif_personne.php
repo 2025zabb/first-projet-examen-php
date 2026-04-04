@@ -137,15 +137,18 @@ if (!$da_ta) {
         </select>
 
         <label class="label" for="maillot">
-          <span class="label-text">Maillot</span>
-        </label>
-        <input
-          type="text"
-          name="maillot"
-          id="maillot"
-          class="input input-bordered w-full"
-          value="<?= htmlspecialchars($da_ta['n_maillot'] ?? '') ?>"
-        >
+<label class="label" for="maillot">
+  <span class="label-text">Maillot</span>
+</label>
+<input
+  type="text"
+  name="maillot"
+  id="maillot"
+  class="input input-bordered w-full"
+  value="<?= htmlspecialchars((string) ($da_ta['n_maillot'] ?? '')) ?>"
+>
+
+        
 
         <div class="card-actions justify-between mt-4">
           <button type="submit" class="btn btn-primary">

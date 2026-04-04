@@ -40,7 +40,9 @@ try {
     
         // Vérifie si c'est une vraie date
         $d = DateTime::createFromFormat('Y-m-d', $date_naissance);
-         if (!$d || $d > new DateTime()) {
+            $today = new DateTime('today');
+
+        if (!$d || $d > $today) {
         $message[] = "Erreur : date invalide ou dans le futur";
         $erreur = true;
         }
