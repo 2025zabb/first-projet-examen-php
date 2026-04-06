@@ -15,7 +15,7 @@ try {
                     m.numero AS numero_maillot
             FROM personnes p
             LEFT JOIN maillots m ON p.id_maillot = m.id_maillot
-            WHERE sexe IS NOT NULL
+            WHERE P.sexe IS NOT NULL
             ORDER BY p.id_personne ASC";
 
     //On exécute la requête et récupère toutes les lignes dans un tableau associatif
@@ -86,25 +86,25 @@ try {
              <td><?= htmlspecialchars($tas['id_personne']) ?></td>
 
              <td class="font-semibold"><?= htmlspecialchars($tas['nom']) ?></td>
-             <td><?= htmlspecialchars($tas['prenom']) ?></td>
-             <td><?= htmlspecialchars($tas['sexe']) ?></td>
+             <td><?= htmlspecialchars($tas['prenom']?? '') ?></td>
+             <td><?= htmlspecialchars($tas['sexe']?? '') ?></td>
 
              <!-- Date formatée en jj-mm-aaaa -->
              <td>
                <?php
-                 $dateBrute = $tas['date_naissance'];            
+                 $dateBrute = $tas['date_naissance']?? '';            
                  $dat_Af    = date('d-m-Y', strtotime($dateBrute)); 
                  echo htmlspecialchars($dat_Af);
                ?>
              </td>
 
-             <td><?= htmlspecialchars($tas['courses']) ?></td>
-             <td><?= htmlspecialchars($tas['nationalite']) ?></td>
-             <td><?= htmlspecialchars($tas['numero_maillot']) ?></td>
+             <td><?= htmlspecialchars($tas['courses']?? '') ?></td>
+             <td><?= htmlspecialchars($tas['nationalite']?? '') ?></td>
+             <td><?= htmlspecialchars($tas['numero_maillot']?? '') ?></td>
 
              <!-- Lien pour modifier la personne -->
              <td>
-               <a href="modif_personne.php?id_personne=<?= htmlspecialchars($tas['id_personne']) ?>"
+               <a href="modif_personne.php?id_personne=<?= htmlspecialchars($tas['id_personne']?? '') ?>"
                   class="btn btn-xs btn-info btn-outline">
                  Éditer
                </a>
