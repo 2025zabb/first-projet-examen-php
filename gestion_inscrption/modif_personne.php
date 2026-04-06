@@ -116,11 +116,12 @@ if (!$da_ta) {
         <select name="course" id="course"
                 class="select select-bordered w-full" required>
           <?php foreach ($courses as $course): ?>
-            <option value="<?= htmlspecialchars($course['nom']) ?>"
-              <?= $course === $da_ta['course'] ? 'selected' : '' ?>>
-              <?= htmlspecialchars($course['nom']) ?>
-            </option>
-          <?php endforeach; ?>
+  <option value="<?= htmlspecialchars($course['nom']) ?>"
+    <?= $course['nom'] === ($da_ta['nom'] ?? '') ? 'selected' : '' ?>>
+    <?= htmlspecialchars($course['nom']) ?>
+  </option>
+<?php endforeach; ?>
+
         </select>
 
         <label class="label" for="nationalite">
