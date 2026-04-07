@@ -5,58 +5,70 @@ $msg  = null;
 $type = null;
 
 if (isset($_SESSION['message'], $_SESSION['message_type'])) {
-    $type = $_SESSION['message_type']; 
+    $type = $_SESSION['message_type'];
     $msg  = $_SESSION['message'];
 }
 
 unset($_SESSION['message_type'], $_SESSION['message']);
 
-
-// dossards.php
- $pdo = new PDO('sqlite:bd.sqlite');
+$pdo = new PDO('sqlite:bd.sqlite');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$pdo->exec('PRAGMA foreign_keys = ON'); // activation des clés étrangères
+$pdo->exec('PRAGMA foreign_keys = ON');
 
-// pour le select course
-$rqt = "SELECT nom FROM courses ORDER BY id_course ASC" ;
+$rqt = "SELECT nom FROM courses ORDER BY id_course ASC";
 $exu = $pdo->prepare($rqt);
 $exu->execute();
 $tabs = $exu->fetchAll(PDO::FETCH_ASSOC);
 
-// pour le select nationalité
-$sNat = "SELECT DISTINCT nationalite FROM personnes WHERE nationalite IS NOT NULL 
-         ORDER BY nationalite ASC";
+$sNat = "SELECT DISTINCT nationalite FROM personnes WHERE nationalite IS NOT NULL ORDER BY nationalite ASC";
 $Nat = $pdo->prepare($sNat);
 $Nat->execute();
 $nationalites = $Nat->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gérer les dossards</title>
+
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body class="min-h-screen flex flex-col items-center bg-black">
 
-<!-- NAVBAR SIMPLE -->
-<div class="navbar bg-base-100 shadow-md w-full max-w-4xl mb-6">
-  <div class="navbar-start">
-    <a class="btn btn-ghost text-xl font-bold">Examen</a>
-  </div>
-  <div class="navbar-end">
-    <ul class="menu menu-horizontal px-1">
-      <li><a href="index.php">Inscription</a></li>
-      <li><a href="mis_jours.php">Gérer les courses</a></li>
-       <li><a href="affichage_personne.php">Personnes inscrites</a></li>
-    </ul>
-  </div>
-</div>
+<div class="w-full max-w-md px-4 sm:px-0">
 
-<div class="w-full max-w-md">
+  <!-- NAVBAR -->
+  <div class="navbar bg-base-100 shadow-md w-full mb-6">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+        <ul tabindex="0"
+            class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a href="index.php">Inscription</a></li>
+          <li><a href="affichage_personne.php">Personnes inscrites</a></li>
+        </ul>
+      </div>
+      <a class="btn btn-ghost text-xl font-bold">Examen</a>
+    </div>
+
+    <div class="navbar-end hidden lg:flex">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="index.php">Inscription</a></li>
+        <li><a href="affichage_personne.php">Personnes inscrites</a></li>
+      </ul>
+    </div>
+  </div>
+
   <div class="card w-full bg-base-100 shadow-xl">
     <div class="card-body space-y-3">
 
@@ -64,10 +76,10 @@ $nationalites = $Nat->fetchAll(PDO::FETCH_ASSOC);
         Gestion des dossards
       </h1>
 
-      <!-- Barre de recherche + liste en overlay -->
       <label class="label">
         <span class="label-text">Rechercher une personne</span>
       </label>
+
       <div class="relative">
         <input type="text" id="search"
                class="input input-bordered w-full"
@@ -77,16 +89,12 @@ $nationalites = $Nat->fetchAll(PDO::FETCH_ASSOC);
         </ul>
       </div>
 
-
-
       <?php if ($msg): ?>
-  <div class="alert <?= $type === 'success' ? 'alert-success' : 'alert-error' ?> mb-4">
-    <span><?= htmlspecialchars($msg) ?></span>
-  </div>
-<?php endif; ?>
+        <div class="alert <?= $type === 'success' ? 'alert-success' : 'alert-error' ?> mb-4">
+          <span><?= htmlspecialchars($msg) ?></span>
+        </div>
+      <?php endif; ?>
 
-
-      <!-- Formulaire rempli automatiquement -->
       <form action="recup_dosar.php" method="post" class="mt-4 space-y-2">
         <input type="hidden" name="id_personne" id="id_personne">
 
@@ -142,7 +150,6 @@ $nationalites = $Nat->fetchAll(PDO::FETCH_ASSOC);
           <?php endforeach; ?>
         </select>
 
-        <!-- Seul champ modifiable : dossard -->
         <label class="label mt-2">
           <span class="label-text">Dossard</span>
         </label>
@@ -150,16 +157,18 @@ $nationalites = $Nat->fetchAll(PDO::FETCH_ASSOC);
                class="input input-bordered w-full">
 
         <div class="card-actions justify-end mt-4">
-          <button type="submit" name="enregistrer" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" name="enregistrer" class="btn btn-primary w-full sm:w-auto">
+            Enregistrer
+          </button>
         </div>
       </form>
 
     </div>
   </div>
+
 </div>
 
 <script>
-// JS pour la recherche dynamique et le remplissage du formulaire
 const searchInput  = document.getElementById('search');
 const suggList     = document.getElementById('suggestions');
 
@@ -174,13 +183,14 @@ const natField     = document.getElementById('nationalite');
 
 searchInput.addEventListener('input', async () => {
   const q = searchInput.value.trim();
+
   if (q.length === 0) {
     suggList.classList.add('hidden');
     suggList.innerHTML = '';
     return;
   }
 
-  const res  = await fetch('search_personne.php?q=' + encodeURIComponent(q));
+  const res = await fetch('search_personne.php?q=' + encodeURIComponent(q));
   const data = await res.json();
 
   if (data.length === 0) {
@@ -205,17 +215,17 @@ searchInput.addEventListener('input', async () => {
       </button>
     </li>
   `).join('');
+
   suggList.classList.remove('hidden');
 
-  // clique sur une suggestion
   suggList.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => {
-      idField.value      = btn.dataset.id || '';
-      nomField.value     = btn.dataset.nom || '';
-      prenomField.value  = btn.dataset.prenom || '';
-      sexeField.value    = btn.dataset.sexe || '';
-      dateField.value    = btn.dataset.date || '';
-      clubField.value    = btn.dataset.club || '';
+      idField.value     = btn.dataset.id || '';
+      nomField.value    = btn.dataset.nom || '';
+      prenomField.value = btn.dataset.prenom || '';
+      sexeField.value   = btn.dataset.sexe || '';
+      dateField.value   = btn.dataset.date || '';
+      clubField.value   = btn.dataset.club || '';
 
       Array.from(courseField.options).forEach(opt => {
         opt.selected = (opt.value === btn.dataset.course);
@@ -232,5 +242,6 @@ searchInput.addEventListener('input', async () => {
   });
 });
 </script>
+
 </body>
 </html>

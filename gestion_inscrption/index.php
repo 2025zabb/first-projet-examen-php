@@ -99,7 +99,7 @@ try {
         </label>
         <ul tabindex="0"
             class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a href="mis_jours.php">Gérer les courses</a></li>
+          <!--<li><a href="mis_jours.php">Gérer les courses</a></li>-->
           <li><a href="dossards.php">Gérer les dossards</a></li>
           <li><a href="affichage_personne.php">Personnes inscrites</a></li>
         </ul>
@@ -109,7 +109,7 @@ try {
 
     <div class="navbar-end hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="mis_jours.php">Gérer les courses</a></li>
+        <!--<li><a href="mis_jours.php">Gérer les courses</a></li>-->
         <li><a href="dossards.php">Gérer les dossards</a></li>
       </ul>
     </div>

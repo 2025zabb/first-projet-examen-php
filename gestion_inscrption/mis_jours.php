@@ -1,4 +1,8 @@
 <?php
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // Connexion à la base SQLite
  $pdo = new PDO('sqlite:bd.sqlite');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

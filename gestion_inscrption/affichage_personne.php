@@ -50,7 +50,7 @@ try {
   <div class="navbar-end">
     <ul class="menu menu-horizontal px-1">
       <li><a href="index.php">Inscription</a></li>
-      <li><a href="mis_jours.php">Gérer les courses</a></li>
+      <!--<li><a href="mis_jours.php">Gérer les courses</a></li>-->
       <li><a href="dossards.php">Gérer les dossards</a></li>
     </ul>
   </div>
@@ -77,7 +77,7 @@ try {
              <th>Course</th>
              <th>Nationalité</th>
              <th>Maillot</th>
-             <th>Action</th>
+             <!-- <th>Action</th> -->
            </tr>
          </thead>
          <tbody>
@@ -103,12 +103,12 @@ try {
              <td><?= htmlspecialchars($tas['numero_maillot']?? '') ?></td>
 
              <!-- Lien pour modifier la personne -->
-             <td>
+             <!-- <td>
                <a href="modif_personne.php?id_personne=<?= htmlspecialchars($tas['id_personne']?? '') ?>"
                   class="btn btn-xs btn-info btn-outline">
                  Éditer
                </a>
-             </td>
+             </td> -->
            </tr>
          <?php endforeach; ?>
          </tbody>
