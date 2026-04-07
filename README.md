@@ -1,5 +1,10 @@
 Gestion des inscriptions
 
+Objectif:
+Projet réalisé dans le cadre de l’apprentissage du développement web dynamique avec PHP et base de données.
+
+---
+
 Description:
 Application web permettant de gérer les inscriptions à une course.
 
@@ -35,10 +40,6 @@ Base de données
 2. Démarrer Apache et MySQL
 3. Importer la base de données
 4. Accéder au projet via un navigateur
-
----
-Objectif:
-Projet réalisé dans le cadre de l’apprentissage du développement web dynamique avec PHP et base de données.
 
 ---
 
