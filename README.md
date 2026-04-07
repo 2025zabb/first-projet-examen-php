@@ -37,13 +37,5 @@ Base de données
   
 ---
 
- Lancer le projet
-1. Placer le projet dans un serveur local (ex: /var/www/html)
-2. Démarrer Apache et MySQL
-3. Importer la base de données
-4. Accéder au projet via un navigateur
-
----
-
 Auteur:
 **Nzabi Mwange Christian** - Apprenti Développeur Web
