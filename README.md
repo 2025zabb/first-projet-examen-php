@@ -17,8 +17,8 @@ Cette application permet d’ajouter, modifier et supprimer des participants, ai
  Fonctionnalités:
  
 - Ajouter un participant
-- Supprimer un participant
-- Modifier les informations d’un participant
+- Supprimer un participant(Admin)
+- Modifier les informations d’un participant(Admin)
 - Choisir un maillot
 - Afficher la liste des participants
 
