@@ -46,4 +46,4 @@ Base de données
 ---
 
 Auteur:
-- Christian Nzabi
+**Nzabi Mwange Christian** - Apprenti Développeur Web
