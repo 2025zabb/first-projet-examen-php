@@ -11,7 +11,9 @@ Application web permettant de gérer les inscriptions à une course.
 Cette application permet d’ajouter, modifier et supprimer des participants, ainsi que de gérer leurs informations via une base de données.
 
 ---
+🚀 [Démo Live](https://inscription.nzabidesigns.fr)
 
+--
  Fonctionnalités:
  
 - Ajouter un participant
